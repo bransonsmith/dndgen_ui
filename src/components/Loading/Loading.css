@@ -1,0 +1,39 @@
+.loading {
+    background-color: black;
+    color: #0bb876;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: calc(50% - 50px);
+    top: 80px;
+}
+
+.loading-label {
+    margin: auto auto 8px;
+}
+
+.loading-spinner {
+    margin: auto;
+    width: 60%;
+    animation: 1s spin ease-in-out infinite;
+}
+  
+.loading-spinner .circlepath {
+    fill: none;
+    stroke: #0bb876;
+    stroke-width: 3;
+}
+  
+.loading-spinner .atom1 {
+    fill: #00ffdd;
+    stroke: none;
+}
+  
+@keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+}
