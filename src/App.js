@@ -15,7 +15,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route path="/rolltable/:name">
+          <Route path="/rolltables">
             <RollTable/>
           </Route>
         </Switch>

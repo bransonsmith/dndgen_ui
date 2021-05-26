@@ -1,12 +1,70 @@
 import React from 'react';
-import { BrowserRouter as Router, useParams } from "react-router-dom";
+import axios from "axios";
 
-function RollTable() {
-    var { name } = useParams();
-    name = name.split(" ").map((word) => word[0].toUpperCase() + word.substring(1) ).join(" ");
+export default class RollTable extends React.Component  {
 
-    return <h1>Roll Table: {name}</h1>;
+  constructor(props) {
+    super(props);
+    this.state = {
+      data : null
+    };
+  }
+
+  componentDidMount() {
+      this.renderMyData();
+  }
+
+  renderMyData(){
+    axios
+      .get("/api/roll_tables/")
+      .then((res) => this.setState({ data: res.data }))
+      .catch((err) => console.log(err));
+  }
+
+  render(){
+      return(
+          <div>
+              {this.state.data 
+                ? <div>Select Roll Table
+                    <select>
+                      {this.state.data.map((value, index) => {
+                        return <option key={index}> { value.name } </option>
+                      })}
+                    </select>
+                  </div>
+                : <div>Loading...</div> }
+          </div>
+      );
+  }
 }
 
 
-export default RollTable;
+
+
+
+// function RollTable() {
+//   let roll_tables = getRollTables().then((res) => res);
+    
+
+
+//     // var { name } = useParams();
+//     // name = name.split(" ").map((word) => word[0].toUpperCase() + word.substring(1) ).join(" ");
+    
+
+//     console.log(roll_tables);
+//     return (
+//       <div>
+//         <h1>Roll Tables</h1>
+//         <div>{{ roll_tables }}</div>
+//       </div>
+//     );
+// }
+
+// async function getRollTables() {
+//   return (await axios.get("/api/roll_tables/")).data;
+//   // .then((res) => res.data)
+//   // .catch((err) => console.log(err));
+// }
+
+
+// export default RollTable;
