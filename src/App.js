@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+// import RollTable from './components/RollTable';
+// import Home from './components/Home';
+
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+const Home = lazy(() => import('./components/Home'));
+const RollTable = lazy(() => import('./components/RollTable'));
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/rolltable/:name">
+            <RollTable/>
+          </Route>
+        </Switch>
+      </Suspense>
+    </Router>
   );
 }
 
