@@ -3,7 +3,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 
-const Home = lazy(() => import('./components/Home'));
+const Home = lazy(() => import('./pages/Home'));
 const RollTables = lazy(() => import('./pages/RollTables'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 
