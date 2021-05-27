@@ -50,20 +50,26 @@ export default class RollTables extends React.Component  {
 
           { this.state.actionsAreCollapsed
           ? <div className="collapsed-page-actions" onClick={this.toggleActionsExpansion}>
-              <div className="collapsed-actions-label">Add Entry</div>
+              <div className="collapsed-actions-label">Actions</div>
               <div className="pointer"></div>
             </div>
           : <div className="page-actions">  
               <div className="expanded-page-actions-bar" onClick={this.toggleActionsExpansion}>
-                <div className="collapsed-actions-label">Add Entry</div>
+                <div className="collapsed-actions-label">Actions</div>
                 <div className="pointer-down"></div>
               </div>
               <form className="action-form">
-                <div className="actions">
-                  <ActionNumber className="action"></ActionNumber>
-                  <ActionSelect className="action"></ActionSelect>
+
+                <div className="super-action">
+                  <ActionSelect></ActionSelect>
                 </div>
-                <button className="action-button">Add new entry</button>
+                <div className="sub-actions">
+                  <div className="actions">
+                    <div className="action"><ActionNumber></ActionNumber></div>
+                    <div className="action"><ActionSelect></ActionSelect></div>
+                  </div>
+                  <button className="action-button">Add new entry</button>
+                </div>
               </form>
             </div> }
         </div>

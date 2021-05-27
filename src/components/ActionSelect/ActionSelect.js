@@ -5,7 +5,7 @@ export default class ActionSelect extends React.Component  {
     
   render(){
     return(
-      <select>
+      <select className="action-select">
           <option>Action Select to be implemented</option>
       </select>
 

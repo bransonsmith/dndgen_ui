@@ -7,14 +7,14 @@ export default class Nav extends React.Component  {
     return(
       <nav>
         <ul className="links">
-          <li>Roll Tables</li>
-          <li>Treasure Hoards</li>
-          <li>Encounters</li>
-          <li>Characters</li>
-          <li>Monsters</li>
-          <li>History</li>
-          <li>Regions</li>
-          <li>Locations</li>
+          <li className="link"><div className="link-text">Roll Tables</div></li>
+          <li className="link"><div className="link-text">Treasure Hoards</div></li>
+          <li className="link"><div className="link-text">Encounters</div></li>
+          <li className="link"><div className="link-text">Characters</div></li>
+          <li className="link"><div className="link-text">Monsters</div></li>
+          <li className="link"><div className="link-text">History</div></li>
+          <li className="link"><div className="link-text">Regions</div></li>
+          <li className="link"><div className="link-text">Locations</div></li>
         </ul>
       </nav>
     );
