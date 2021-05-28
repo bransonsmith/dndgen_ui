@@ -5,6 +5,8 @@ nav {
     bottom: 0px;
     left: 0px;
     border-top: 2px solid black;
+    background-color: #414550;
+    color: #000000;
 }
 
 .links {

@@ -66,6 +66,7 @@ ul {
   margin: 0px auto;
   background-color: none;
   border-top: 2px solid black;
+  background-color: #eeeeee;
   /* border-bottom: 2px solid black; */
   display: flex;
   flex-direction: column;
