@@ -6,7 +6,7 @@ export default class ActionSelect extends React.Component  {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Select a ' + this.props.label
+      value: 'Select an option'
     };
 
     this.selectionMade = this.selectionMade.bind(this);
@@ -22,7 +22,7 @@ export default class ActionSelect extends React.Component  {
       <div className="action-select">
         <label>{this.props.label}</label>
         <select value={this.state.value} className="select-component" onChange={this.selectionMade} placeholder="Select a Roll Table">
-          <option value='Select a Roll Table' disabled>Select a Roll Table</option>
+          <option value='Select an option' disabled>Select a {this.props.label}</option>
           {this.props.values.map((value, index) => {
             return <option key={index}>{value.name}</option>
           })}

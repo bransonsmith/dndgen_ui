@@ -33,7 +33,7 @@
     margin-right: auto;
 }
 .right {
-    margin-left: auto;
+    margin: auto;
 }
 
 .action-inc {
@@ -44,6 +44,9 @@
     border: none;
     margin: auto 0px;
     border-radius: 4px;
+    padding: auto;
+    text-align: center;
+    font-weight: bold;
 }
 
 .action-number-label {
