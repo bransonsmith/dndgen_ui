@@ -39,7 +39,7 @@
 .action-inc {
     height: 20px;
     width: 20px;
-    background-color: #ffffff;
+    background-color: var(--color-top-main);
     box-shadow: 2px 2px 4px black;
     border: none;
     margin: auto 0px;

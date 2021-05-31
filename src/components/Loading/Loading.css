@@ -1,6 +1,6 @@
 .loading {
-    background-color: black;
-    color: #0bb876;
+    background-color: var(--color-fg-main);
+    color: var(--color-accent);
     width: 100px;
     height: 100px;
     border-radius: 10px;
@@ -23,12 +23,12 @@
   
 .loading-spinner .circlepath {
     fill: none;
-    stroke: #0bb876;
+    stroke: var(--color-accent);
     stroke-width: 3;
 }
   
 .loading-spinner .atom1 {
-    fill: #00ffdd;
+    fill: var(--color-accent);
     stroke: none;
 }
   

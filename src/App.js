@@ -4,12 +4,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 
 const Home = lazy(() => import('./pages/Home'));
-const RollTables = lazy(() => import('./pages/RollTables'));
+const RollTablePage = lazy(() => import('./pages/RollTablePage/RollTablePage'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 
 function App() {
 
-  let navExpanded = true;
   return (
     <div className="app">
       <Nav/>
@@ -18,7 +17,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/rolltables">
-              <RollTables/>
+              <RollTablePage/>
             </Route>
             <Route path="**">
               <PageNotFound/>

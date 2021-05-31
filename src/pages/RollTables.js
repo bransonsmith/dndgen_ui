@@ -3,6 +3,8 @@ import axios from "axios";
 import Loading from '../components/Loading/Loading';
 import ActionNumber from '../components/ActionNumber/ActionNumber';
 import ActionSelect from '../components/ActionSelect/ActionSelect';
+import './RollTables.css';
+import PageHeader from '../components/PageHeader/PageHeader';
 
 export default class RollTables extends React.Component  {
 
@@ -14,7 +16,28 @@ export default class RollTables extends React.Component  {
       actionsAreCollapsed: false,
       selections: {},
       values: {},
-      entryOptions: [ {'name': 'apple'}, {'name': 'banana'}, {'name': 'cranberry'}]
+      entryOptions: [ {'name': 'apple'}, {'name': 'banana'}, {'name': 'cranberry'}],
+      entries: [ 
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        // { 'quantity': 2, 'name': 'Witch Coven' }, 
+        // { 'quantity': 1, 'name': 'Magic Portal' },, 
+        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        // { 'quantity': 2, 'name': 'Witch Coven' }, 
+        // { 'quantity': 1, 'name': 'Magic Portal' },, 
+        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        // { 'quantity': 2, 'name': 'Witch Coven' }, 
+        // { 'quantity': 1, 'name': 'Magic Portal' },,,, 
+        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        // { 'quantity': 2, 'name': 'Witch Coven' }, 
+        // { 'quantity': 1, 'name': 'Magic Portal' },, 
+        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        // { 'quantity': 2, 'name': 'Witch Coven' }, 
+        // { 'quantity': 1, 'name': 'Magic Portal' },
+      ]
     };
 
     this.toggleActionsExpansion = this.toggleActionsExpansion.bind(this);
@@ -66,11 +89,41 @@ export default class RollTables extends React.Component  {
     });
   }
 
+
+// Page Title Section (static)
+// Page Content Section (scroll)
+  // Roll Table Component
+// Page Actions Section (expandable, scroll)
+
+
   render(){
       return(
         <span>  
           { this.state.rollTables 
             ? <div className="page">
+            <PageHeader title={ this.state.selections['Roll Table'] }/>
+            <div className="roll-table">
+                {/* <div className="table-title">{ this.state.selections['Roll Table'] } Roll Table</div> */}
+                <main>
+                  <div className="wrapper">
+                      <table cellSpacing="0" cellPadding="0">
+                          <thead><tr>
+                              <th>1d{'X'}</th>
+                              <th> { this.state.selections['Roll Table'] } </th>
+                          </tr></thead>
+                          <tbody>
+                            {this.state.entries.map((entry, index) => {
+                              return <tr key={index}>
+                                      <td>{entry.quantity}</td>
+                                      <td>{ entry.name }</td>
+                                  </tr>
+                            })}
+                          </tbody>
+                      </table>
+                  </div>
+                </main>
+              </div>
+
               { this.state.actionsAreCollapsed
               ? <div className="collapsed-page-actions" onClick={this.toggleActionsExpansion}>
                   <div className="collapsed-actions-label">Actions</div>
@@ -111,7 +164,8 @@ export default class RollTables extends React.Component  {
 
 
                   </form>
-                </div> }
+                </div> 
+              }
             </div>
         
           : <div className="page"><Loading/></div> }

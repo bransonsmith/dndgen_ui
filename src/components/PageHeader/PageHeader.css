@@ -1,0 +1,21 @@
+.page-header {
+    width: 100%;
+    min-height: 30px;
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    width: fit-content;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.page-subtitle {
+    width: fit-content;
+    margin: auto;
+    font-size: 16px;
+    font-weight: normal;
+}
