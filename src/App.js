@@ -3,9 +3,9 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 
-const Home = lazy(() => import('./pages/Home'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const RollTablePage = lazy(() => import('./pages/RollTablePage/RollTablePage'));
-const PageNotFound = lazy(() => import('./pages/PageNotFound'));
+const PageNotFoundPage = lazy(() => import('./pages/PageNotFoundPage/PageNotFoundPage'));
 
 function App() {
 
@@ -15,12 +15,12 @@ function App() {
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={HomePage}/>
             <Route path="/rolltables">
               <RollTablePage/>
             </Route>
             <Route path="**">
-              <PageNotFound/>
+              <PageNotFoundPage/>
             </Route>
           </Switch>
         </Suspense>
