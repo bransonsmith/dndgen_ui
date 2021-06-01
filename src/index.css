@@ -24,21 +24,26 @@ ul {
 
 :root {
   --color-bg-main: #cccccc;
-  --color-bg-dark: #77777790;
-  --color-bg-dark-2: #44444490;
+  --color-bg-dark: #777777ce;
+  --color-bg-dark-2: #444444c7;
   --color-fg-main: #eeeeee;
   --color-top-main: #ffffff;
   --color-text-main: #343536;
   --color-text-strong: #030304;
   --color-text-weak: #e9fffe;
-  --color-accent: #990000;
+  --color-accent: #00814b;
   --color-alt: #414550;
 
+  --action-bar-height: 34px;
   --action-height: 50px;
   --action-width: 300px;
   --action-label-width: 30%;
   --action-input-height: 30px;
   --action-border-radius: 6px;
+
+  --nav-bar-height: 70px;
+
+  --page-header-height: 65px;
 }
 
 .action-input {

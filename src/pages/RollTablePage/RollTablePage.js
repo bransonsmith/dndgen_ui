@@ -8,6 +8,7 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import PageActions from '../../components/PageActions/PageActions';
 import ActionSubmit from '../../components/ActionSubmit/ActionSubmit';
 import RollTable from '../../components/RollTable/RollTable';
+import PageContent from '../../components/PageContent/PageContent';
 
 export default class RollTables extends React.Component  {
 
@@ -26,6 +27,15 @@ export default class RollTables extends React.Component  {
         { 'quantity': 2, 'name': 'Witch Coven' }, 
         { 'quantity': 1, 'name': 'Magic Portal' }, 
         { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' },
       ]
     };
 
@@ -91,14 +101,14 @@ export default class RollTables extends React.Component  {
             
           { this.state.rollTables
           ? <span>
-            {/* <PageContent> */}
+            <PageContent>
               <div className="page-content-section">
                 { this.state.selections['Roll Table']
                 ? <RollTable name={ this.state.selections['Roll Table'] } entries={ this.state.entries }></RollTable>
                 : <div className="prompt"> Select a roll table below. </div> 
                 }
               </div>
-            {/* </PageContent> */}
+            </PageContent>
             <PageActions>
               <ActionSelect
                 label={"Roll Table"}

@@ -3,26 +3,54 @@ import './RollTable.css';
 
 export default class RollTable extends React.Component  {
 
+  constructor(props) {
+      super(props);
+
+      this.state = {
+        totalQuantity: this.getTotalQuantity(),
+        rangedEntries: this.getRangedEntries()
+      };
+  
+      this.render = this.render.bind(this);
+  }
+
+  getTotalQuantity() {
+      let sum = 0;
+      for (let i = 0; i < this.props.entries.length; i++) {
+          const entry = this.props.entries[i];
+          sum += entry['quantity'];
+      }
+      return sum;
+  }
+
+  getRangedEntries() {
+      let rangedEntries = [];
+      let index = 1;
+      for (let i = 0; i < this.props.entries.length; i++) {
+        const entry = this.props.entries[i];
+        let rangedEntry = { "min": index, "max": index + entry['quantity'] -1, "name": entry['name'] };
+        rangedEntries.push(rangedEntry);
+        index += entry['quantity'];
+      }
+      return rangedEntries;
+  }
+
   render(){
       return(
-        <main className="roll-table">
-          <div className="wrapper">
-            <table cellSpacing="0" cellPadding="0">
-              <thead><tr>
-                <th>1d{'X'}</th>
-                <th> { this.props.name } </th>
-              </tr></thead>
-              <tbody>
-              {this.props.entries.map((entry, index) => {
-                return <tr key={index}>
-                  <td>{entry.quantity}</td>
-                  <td>{ entry.name }</td>
-                </tr>
-              })}
-              </tbody>
-            </table>
+        <div className="roll-table">
+          <div className="header-row fixed">
+            <div className="roll-col"><div className="header-row-text">1d{this.state.totalQuantity}</div></div>
+            <div className="name-col"><div className="header-row-text">{this.props.name}</div></div>
           </div>
-        </main>
+          <div className="table-content scroll">
+              {this.state.rangedEntries.map((entry, index) => { 
+                return <div className="table-row" key={index}>
+                  <div className="roll-col"><div className="table-row-text">{ entry.min } - {entry.max} </div></div>
+                  <div className="name-col"><div className="table-row-text">{entry.name}</div></div>
+                </div>
+              })}
+          </div>
+        </div>
       );
   }
 }
