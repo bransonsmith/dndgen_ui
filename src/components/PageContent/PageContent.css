@@ -1,7 +1,7 @@
 .page-content {
-    width: calc(100%);
+    width: 100%;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(100vh - var(--nav-bar-height) - var(--action-bar-height) - var(--page-header-height));
 }

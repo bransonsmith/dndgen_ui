@@ -36,6 +36,48 @@ export default class RollTables extends React.Component  {
         { 'quantity': 3, 'name': 'Enchanted Rune' }, 
         { 'quantity': 2, 'name': 'Witch Coven' }, 
         { 'quantity': 1, 'name': 'Magic Portal' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
+        { 'quantity': 5, 'name': 'Wizard Tower' }, 
+        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
+        { 'quantity': 2, 'name': 'Witch Coven' }, 
+        { 'quantity': 1, 'name': 'Magic Portal' },
       ]
     };
 
@@ -100,7 +142,7 @@ export default class RollTables extends React.Component  {
           <PageHeader title='Roll Tables' subtitle={ this.state.selections['Roll Table'] }/>            
             
           { this.state.rollTables
-          ? <span>
+          ? <div>
             <PageContent>
               <div className="page-content-section">
                 { this.state.selections['Roll Table']
@@ -116,7 +158,7 @@ export default class RollTables extends React.Component  {
                 onSelection={this.selectionMade}
               />
               { this.state.selections['Roll Table']
-              ? <span>
+              ? <div>
                   <ActionNumber
                     label="Roll Range"
                     updateValue={this.updateValue}
@@ -130,11 +172,11 @@ export default class RollTables extends React.Component  {
                     label={'Add New Entry'}
                     submitValue={this.submitNewEntry}
                   />
-                </span>
-              : <span></span>
+                </div>
+              : <div></div>
               }
             </PageActions>
-          </span>
+          </div>
           : <Loading/>
           }
         </div>
