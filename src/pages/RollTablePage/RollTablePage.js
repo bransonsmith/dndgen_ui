@@ -7,6 +7,7 @@ import './RollTablePage.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import PageActions from '../../components/PageActions/PageActions';
 import ActionSubmit from '../../components/ActionSubmit/ActionSubmit';
+import RollTable from '../../components/RollTable/RollTable';
 
 export default class RollTables extends React.Component  {
 
@@ -93,7 +94,7 @@ export default class RollTables extends React.Component  {
             {/* <PageContent> */}
               <div className="page-content-section">
                 { this.state.selections['Roll Table']
-                ? <div className="roll-table"> Roll Table Goes Here </div>
+                ? <RollTable name={ this.state.selections['Roll Table'] } entries={ this.state.entries }></RollTable>
                 : <div className="prompt"> Select a roll table below. </div> 
                 }
               </div>
