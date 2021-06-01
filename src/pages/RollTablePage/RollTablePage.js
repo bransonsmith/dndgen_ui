@@ -6,6 +6,7 @@ import ActionSelect from '../../components/ActionSelect/ActionSelect';
 import './RollTablePage.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import PageActions from '../../components/PageActions/PageActions';
+import ActionSubmit from '../../components/ActionSubmit/ActionSubmit';
 
 export default class RollTables extends React.Component  {
 
@@ -23,21 +24,7 @@ export default class RollTables extends React.Component  {
         { 'quantity': 3, 'name': 'Enchanted Rune' }, 
         { 'quantity': 2, 'name': 'Witch Coven' }, 
         { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        // { 'quantity': 2, 'name': 'Witch Coven' }, 
-        // { 'quantity': 1, 'name': 'Magic Portal' },, 
-        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        // { 'quantity': 2, 'name': 'Witch Coven' }, 
-        // { 'quantity': 1, 'name': 'Magic Portal' },, 
-        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        // { 'quantity': 2, 'name': 'Witch Coven' }, 
-        // { 'quantity': 1, 'name': 'Magic Portal' },,,, 
-        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        // { 'quantity': 2, 'name': 'Witch Coven' }, 
-        // { 'quantity': 1, 'name': 'Magic Portal' },, 
-        // { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        // { 'quantity': 2, 'name': 'Witch Coven' }, 
-        // { 'quantity': 1, 'name': 'Magic Portal' },
+        { 'quantity': 3, 'name': 'Enchanted Rune' },
       ]
     };
 
@@ -45,6 +32,7 @@ export default class RollTables extends React.Component  {
     this.selectionMade = this.selectionMade.bind(this);
     this.updateValue = this.updateValue.bind(this);
     this.render = this.render.bind(this);
+    this.submitNewEntry = this.submitNewEntry.bind(this);
   }
 
   componentDidMount() {
@@ -90,38 +78,54 @@ export default class RollTables extends React.Component  {
     });
   }
 
-
-// Page Title Section (static)
-// Page Content Section (scroll)
-  // Roll Table Component
-// Page Actions Section (expandable, scroll)
-
+  submitNewEntry() {
+    console.log('New Entry Submitted.');
+    console.log(this.state.values['Roll Range']);
+  }
 
   render(){
       return(
         <div className="roll-table-page">
-            <PageHeader title='Roll Tables' subtitle={ this.state.selections['Roll Table'] }/>
-
-            {/* <PageContent> */}
-                { this.state.rollTables
-                ? <span>
-                    <div className="page-content-section">
-                        { this.state.selections['Roll Table']
-                        ? <div className="roll-table"> Roll Table Goes Here </div>
-                        : <div className="prompt"> Select a roll table. </div> 
-                        }
-                    </div>
-
-                </span>
-                : <Loading/>
-                }
-            {/* </PageContent> */}
-
+          <PageHeader title='Roll Tables' subtitle={ this.state.selections['Roll Table'] }/>            
             
+          { this.state.rollTables
+          ? <span>
+            {/* <PageContent> */}
+              <div className="page-content-section">
+                { this.state.selections['Roll Table']
+                ? <div className="roll-table"> Roll Table Goes Here </div>
+                : <div className="prompt"> Select a roll table below. </div> 
+                }
+              </div>
+            {/* </PageContent> */}
             <PageActions>
-                
+              <ActionSelect
+                label={"Roll Table"}
+                values={this.state.rollTables}
+                onSelection={this.selectionMade}
+              />
+              { this.state.selections['Roll Table']
+              ? <span>
+                  <ActionNumber
+                    label="Roll Range"
+                    updateValue={this.updateValue}
+                  />
+                  <ActionSelect
+                    label={this.state.selections["Roll Table"]}
+                    values={this.state.entryOptions}
+                    onSelection={this.selectionMade}
+                  />
+                  <ActionSubmit
+                    label={'Add New Entry'}
+                    submitValue={this.submitNewEntry}
+                  />
+                </span>
+              : <span></span>
+              }
             </PageActions>
-
+          </span>
+          : <Loading/>
+          }
         </div>
       );
   }

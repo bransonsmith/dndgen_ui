@@ -1,0 +1,17 @@
+.action-submit {
+    height: 50px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    margin: 0px auto;
+}
+
+.action-submit-button {
+    margin: auto;
+    width: 60%;
+    border: solid 3px var(--color-accent);
+    color: var(--color-accent);
+    background-color: var(--color-top-main);
+    border-radius: 6px;
+    height: 40px;
+}

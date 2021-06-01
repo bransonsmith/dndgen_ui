@@ -1,4 +1,79 @@
 .page-actions-container {
-    background: var(--color-accent);
-    color: var(--color-text-weak);
+    background: var(--color-bg-dark);
+    color: var(--color-text);
 }
+
+.page-actions {
+    position: absolute;
+    bottom: 70px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: inherit;
+}
+
+.page-actions-bar {
+    width: 100%;
+    height: 30px;
+    margin: 0px auto;
+    border-bottom: 2px solid var(--color-text-strong);
+    border-top: 2px solid var(--color-text-strong);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-dark-2);
+}
+.page-actions-bar:hover {
+  cursor: pointer;
+  border-color: var(--color-accent);
+}
+
+.actions-label {
+    margin: 0px auto;
+    position: relative;
+    top: 5px;
+}
+
+.pointer {
+    width: 0;
+    border-width: 10px ;
+    border-style: solid;
+    border-top-color:   #00000000;
+    border-left-color:  #00000000;
+    border-right-color: #00000000;
+    border-bottom-color: inherit;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    position: relative;
+    top: -40px;
+}
+  
+.pointer-down {
+    width: 0;
+    border-width: 10px ;
+    border-style: solid;
+    border-bottom-color:#00000000;
+    border-left-color:  #00000000;
+    border-right-color: #00000000;
+    border-top-color: inherit;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    position: relative;
+    top: 12px;
+}
+
+@media all and (max-width: 500px) {
+    .page-actions-bar:hover {
+      cursor: pointer;
+      border-color: var(--color-text-strong);
+    }
+} 

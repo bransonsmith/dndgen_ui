@@ -1,8 +1,19 @@
 .action-select {
     margin: 0px auto;
-    width: 100%;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}
+
+label {
+    text-align: center;
+    margin: auto;
+    width: 35%;
 }
 
 .select-component {
-    width: 100%;
+    margin: auto;
+    width: 60%;
+    height: var(--action-input-height);
 }

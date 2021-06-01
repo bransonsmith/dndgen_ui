@@ -1,6 +1,4 @@
 import React from 'react';
-import ActionNumber from '../../components/ActionNumber/ActionNumber';
-import ActionSelect from '../../components/ActionSelect/ActionSelect';
 import './PageActions.css';
 
 export default class PageActions extends React.Component  {
@@ -8,28 +6,37 @@ export default class PageActions extends React.Component  {
   constructor(props) {
     super(props);
     this.state = {
-      actionsAreCollapsed: true,
+      actionsAreCollapsed: false,
+      actionValues: {}
     };
 
     this.toggleActionsExpansion = this.toggleActionsExpansion.bind(this);
-    // this.selectionMade = this.selectionMade.bind(this);
-    // this.updateValue = this.updateValue.bind(this);
     this.render = this.render.bind(this);
   }
 
-
-toggleActionsExpansion() {}
+  toggleActionsExpansion() {
+    let currentValue = this.state['actionsAreCollapsed'];
+    this.setState ({
+      actionsAreCollapsed: !currentValue 
+    });
+  }
 
 render() {
     return(
         <div className="page-actions-container">
             { this.state.actionsAreCollapsed
-            ? <div className="collapsed-page-actions" onClick={this.toggleActionsExpansion}>
-                <div className="collapsed-actions-label">Actions</div>
-                <div className="pointer"></div>
-              </div>  
+            ? <div className="page-actions">
+                <div className="page-actions-bar" onClick={this.toggleActionsExpansion}>
+                  <div className="actions-label">Actions</div>
+                  <div className="pointer"></div>
+                </div>  
+              </div>
             : <div className="page-actions">
-                Expanded
+                <div className="page-actions-bar" onClick={this.toggleActionsExpansion}>
+                  <div className="actions-label">Actions</div>
+                  <div className="pointer-down"></div>
+                </div>
+                { this.props.children }
               </div> 
             }
         </div>
