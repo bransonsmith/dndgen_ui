@@ -21,64 +21,9 @@ export default class RollTables extends React.Component  {
       selections: {},
       values: {},
       entryOptions: [ {'name': 'apple'}, {'name': 'banana'}, {'name': 'cranberry'}],
-      entries: [ 
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' },
-        { 'quantity': 5, 'name': 'Wizard Tower' }, 
-        { 'quantity': 3, 'name': 'Enchanted Rune' }, 
-        { 'quantity': 2, 'name': 'Witch Coven' }, 
-        { 'quantity': 1, 'name': 'Magic Portal' },
-      ]
+      entries: null,
+      loadingError: null,
+      minTimeToLoadHasPassed: false
     };
 
     this.toggleActionsExpansion = this.toggleActionsExpansion.bind(this);
@@ -86,17 +31,27 @@ export default class RollTables extends React.Component  {
     this.updateValue = this.updateValue.bind(this);
     this.render = this.render.bind(this);
     this.submitNewEntry = this.submitNewEntry.bind(this);
+    this.timeFunc = this.timeFunc.bind(this);
+    this.getNamedEntries = this.getNamedEntries.bind(this);
   }
 
   componentDidMount() {
       this.renderMyData();
+      this.waitMinTime();
+  }
+
+  waitMinTime() {
+    setTimeout(this.timeFunc, 2000);
+  }
+  timeFunc() {
+    this.setState({ minTimeToLoadHasPassed: true });
   }
 
   renderMyData(){
     axios
-      .get("/api/roll_tables/")
+      .get("/worldgen/RollTables/")
       .then((res) => this.setState({ rollTables: res.data }))
-      .catch((err) => console.log(err));
+      .catch((err) => this.setState({ loadingError: err }));
   }
 
   toggleActionsExpansion() {
@@ -107,16 +62,22 @@ export default class RollTables extends React.Component  {
   }
 
   selectionMade(selectLabel, valueSelected) {
+    this.setState({ entries: null });
+    this.setState({ entryOptions: null });
     let updatedSelections = this.state.selections;
     updatedSelections[selectLabel] = valueSelected;
 
-    // if (selectLabel === "Roll Table") {
-    //   this.setState({entryOptions: null});
-    //   axios
-    //   .get("/api/roll_tables/" + valueSelected)
-    //   .then((res) => this.setState({ entryOptions: res.data }))
-    //   .catch((err) => console.log(err));
-    // }
+    var rollTableId = this.state.rollTables.find(x => x['name'] === updatedSelections['Roll Table'])['id'];
+
+    axios
+      .get("/worldgen/RollTableEntrys")
+      .then((res) => this.setState({ entries: res.data.filter(x => x['roll_table'] === rollTableId) }))
+      .catch((err) => this.setState({ loadingError: err }));
+
+    axios
+      .get("/worldgen/LocationTypes")
+      .then((res) => this.setState({ entryOptions: res.data }))
+      .catch((err) => this.setState({ loadingError: err }));
 
     this.setState({
       selections: updatedSelections
@@ -129,6 +90,22 @@ export default class RollTables extends React.Component  {
     this.setState({
       values: updatedValues
     });
+  }
+
+  getNamedEntries() {
+    let namedEntries = [];
+    for (let i = 0; i < this.state.entries.length; i++) {
+      const entry = this.state.entries[i];
+      let namedEntry = {
+        id: entry['id'],
+        name: this.state.entryOptions.find(x => x['id'] === entry['location_type'])['name'],
+        roll_quantity: entry['roll_quantity'],
+        order: entry['order']
+      };
+      namedEntries.push(namedEntry);
+    }
+    namedEntries.sort( (a, b) => a['order'] - b['order']);
+    return namedEntries;
   }
 
   submitNewEntry() {
@@ -145,8 +122,8 @@ export default class RollTables extends React.Component  {
           ? <div>
             <PageContent>
               <div className="page-content-section">
-                { this.state.selections['Roll Table']
-                ? <RollTable name={ this.state.selections['Roll Table'] } entries={ this.state.entries }></RollTable>
+                { this.state.selections['Roll Table'] && this.state.entries && this.state.entryOptions
+                ? <RollTable name={ this.state.selections['Roll Table'] } entries={ this.getNamedEntries() }></RollTable>
                 : <div className="prompt"> Select a roll table below. </div> 
                 }
               </div>
@@ -157,14 +134,14 @@ export default class RollTables extends React.Component  {
                 values={this.state.rollTables}
                 onSelection={this.selectionMade}
               />
-              { this.state.selections['Roll Table']
+              { this.state.selections['Roll Table'] && this.state.entries && this.state.entryOptions
               ? <div>
                   <ActionNumber
                     label="Roll Range"
                     updateValue={this.updateValue}
                   />
                   <ActionSelect
-                    label={this.state.selections["Roll Table"]}
+                    label='New Entry'
                     values={this.state.entryOptions}
                     onSelection={this.selectionMade}
                   />
@@ -177,7 +154,11 @@ export default class RollTables extends React.Component  {
               }
             </PageActions>
           </div>
-          : <Loading/>
+          : <div className="loading-div">
+            { this.state.loadingError && this.state.minTimeToLoadHasPassed
+            ? <div className="loading-error">Sorry! Something isn't working, and the app failed to load the roll tables. Please try again later.</div>
+            : <Loading/>  
+            }</div>
           }
         </div>
       );

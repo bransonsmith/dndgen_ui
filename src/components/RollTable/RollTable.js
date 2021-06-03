@@ -18,7 +18,7 @@ export default class RollTable extends React.Component  {
       let sum = 0;
       for (let i = 0; i < this.props.entries.length; i++) {
           const entry = this.props.entries[i];
-          sum += entry['quantity'];
+          sum += entry['roll_quantity'];
       }
       return sum;
   }
@@ -28,9 +28,9 @@ export default class RollTable extends React.Component  {
       let index = 1;
       for (let i = 0; i < this.props.entries.length; i++) {
         const entry = this.props.entries[i];
-        let rangedEntry = { "min": index, "max": index + entry['quantity'] -1, "name": entry['name'] };
+        let rangedEntry = { "min": index, "max": index + entry['roll_quantity'] -1, "name": entry['name'] };
         rangedEntries.push(rangedEntry);
-        index += entry['quantity'];
+        index += entry['roll_quantity'];
       }
       return rangedEntries;
   }

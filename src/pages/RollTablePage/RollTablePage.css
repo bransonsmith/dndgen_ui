@@ -4,3 +4,25 @@
     flex-direction: column;
     width: 100%;
 }
+
+.prompt {
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    margin: 0px auto;
+}
+
+.loading-div {
+    display: flex;
+    width: 90%;
+    max-width: 700px;
+    height: 250px;
+    margin: 0px auto;
+}
+
+.loading-error {
+    color: rgb(95, 32, 32);
+    margin: auto;
+    font-size: 16px;
+    text-align: center;
+}

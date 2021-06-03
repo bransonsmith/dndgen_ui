@@ -1,13 +1,13 @@
 .loading {
     background-color: var(--color-fg-main);
     color: var(--color-accent);
-    width: 100px;
-    height: 100px;
+    width: 160px;
+    height: 160px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     position: relative;
-    left: calc(50% - 50px);
+    left: calc(50% - 80px);
     top: 80px;
 }
 
