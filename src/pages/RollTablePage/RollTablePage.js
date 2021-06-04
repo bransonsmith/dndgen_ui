@@ -23,7 +23,8 @@ export default class RollTables extends React.Component  {
       entryOptions: [ {'name': 'apple'}, {'name': 'banana'}, {'name': 'cranberry'}],
       entries: null,
       loadingError: null,
-      minTimeToLoadHasPassed: false
+      minTimeToLoadHasPassed: false,
+      separateTopSelect: false
     };
 
     this.toggleActionsExpansion = this.toggleActionsExpansion.bind(this);
@@ -64,6 +65,7 @@ export default class RollTables extends React.Component  {
   selectionMade(selectLabel, valueSelected) {
     this.setState({ entries: null });
     this.setState({ entryOptions: null });
+    this.setState({ separateTopSelect: true });
     let updatedSelections = this.state.selections;
     updatedSelections[selectLabel] = valueSelected;
 
@@ -133,6 +135,7 @@ export default class RollTables extends React.Component  {
                 label={"Roll Table"}
                 values={this.state.rollTables}
                 onSelection={this.selectionMade}
+                separated={this.state.separateTopSelect}
               />
               { this.state.selections['Roll Table'] && this.state.entries && this.state.entryOptions
               ? <div>
